@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from .forms import UserForm
 
 from django.contrib import auth, messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login,logout
 
 # Create your views here.
 
@@ -25,4 +25,9 @@ def register(request):
         'form_user' : form
     }
     
-    return render(request, "users/register.html")
+    return render(request, "users/register.html",context)
+
+def user_logout(request):
+    messages.success(request, "You Logout!")
+    logout(request)
+    return redirect('home')
